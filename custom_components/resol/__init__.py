@@ -16,12 +16,9 @@ from .resolapi import ResolAPI
 from .const import (
     _LOGGER,
     DOMAIN,
-    ISSUE_URL_ERROR_MESSAGE,
     STARTUP_MESSAGE
 )
 
-from homeassistant.helpers.translation import async_get_translations
-from homeassistant.helpers import entity_registry
 
 _LOGGER.info(STARTUP_MESSAGE)
 

@@ -1,14 +1,12 @@
 """config_flow.py: Config flow for Resol integration."""
 from __future__ import annotations
 
-import logging
 import re
 from typing import Any
 
 import voluptuous as vol
 
 from homeassistant import config_entries
-from homeassistant import exceptions
 
 from homeassistant.core import HomeAssistant
 from homeassistant.data_entry_flow import FlowResult

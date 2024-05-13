@@ -6,7 +6,7 @@ import datetime
 
 from collections import namedtuple
 from homeassistant.exceptions import IntegrationError
-from requests.exceptions import RequestException, Timeout
+from requests.exceptions import RequestException
 
 from .const import (
     _LOGGER,

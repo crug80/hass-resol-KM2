@@ -5,22 +5,11 @@ from homeassistant.components.sensor import SensorStateClass
 from homeassistant.helpers.entity import EntityCategory
 from homeassistant.helpers.event import async_track_time_interval
 from homeassistant.helpers import entity_registry
-from homeassistant.helpers.entity_registry import async_get
-from homeassistant.helpers.entity_registry import async_get as async_get_entity_registry
 
-
-from homeassistant.config_entries import ConfigEntry
-
-from homeassistant import config_entries
-from homeassistant import exceptions
-
-from homeassistant.exceptions import HomeAssistantError
 from homeassistant.exceptions import IntegrationError
 
 from datetime import timedelta
-from datetime import datetime
 
-import asyncio
 from collections import defaultdict
 
 from .const import (
@@ -89,7 +78,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 
 
     #Registering entities to registry, and adding them to list for schedule updates on each device which is stored within hass.data
-    for unique_id, endpoint in data.items():
+    for _unique_id, endpoint in data.items():
         # Get individul sensor entry from API
         sensor = ResolSensor(resol_api, endpoint)
 
@@ -191,7 +180,6 @@ class ResolSensor(SensorEntity):
     """Representation of a RESOL Temperature Sensor."""
 
     def __init__(self, resol_api: ResolAPI, endpoint):
-
         """Initialize the sensor."""
         # Make the ResolAPI and the endpoint parameters from the Sensor API available
         self.resol_api = resol_api
@@ -227,7 +215,7 @@ class ResolSensor(SensorEntity):
 
     @property
     def should_poll(self):
-        """ async_track_time_intervals handles updates. """
+        """async_track_time_intervals handles updates."""
         return False
 
     @property
@@ -253,7 +241,7 @@ class ResolSensor(SensorEntity):
 
     @property
     def device_class(self):
-        """ Return the device class of this entity, if any. """
+        """Return the device class of this entity, if any."""
         if self._unit == '°C':
             return SensorDeviceClass.TEMPERATURE
         elif self._unit == '%':
@@ -265,7 +253,7 @@ class ResolSensor(SensorEntity):
 
     @property
     def state_class(self):
-        """ Return the state class of this entity, if any. """
+        """Return the state class of this entity, if any."""
         if self._unit == '°C':
             return SensorStateClass.MEASUREMENT
         elif self._unit == 'h':
@@ -277,7 +265,7 @@ class ResolSensor(SensorEntity):
 
     @property
     def extra_state_attributes(self):
-        """ Return the state attributes of this device. """
+        """Return the state attributes of this device."""
         attr = {}
 
         attr[ATTR_PRODUCT_DESCRIPTION] = self.endpoint.description
