@@ -1,4 +1,7 @@
 {
   "name": "Resol Controller",
-  "render_readme": true
+  "filename": "resol_controller.zip",
+  "homeassistant": "2024.5.1",
+  "render_readme": true,
+  "zip_release": true
 }
